@@ -23,7 +23,7 @@ public class Patient {
 		this.fName = fName;
 	}
 	
-	private String getFname() {
+	public String getFname() {
 		return this.fName;
 	}
 	
@@ -31,7 +31,7 @@ public class Patient {
 		this.lName = lName;
 	}
 	
-	private String getLname() {
+	public String getLname() {
 		return this.lName;
 	}
 	
@@ -39,7 +39,7 @@ public class Patient {
 		this.ppsNumber = ppsNumber;
 	}
 	
-	private String getPpsNumber() {
+	public String getPpsNumber() {
 		return this.ppsNumber;
 	}
 	
@@ -47,7 +47,7 @@ public class Patient {
 		this.mobileNumber = mobileNumber;
 	}
 	
-	private String getMobileNumber() {
+	public String getMobileNumber() {
 		return this.mobileNumber;
 	}
 	
@@ -55,7 +55,7 @@ public class Patient {
 		this.email = email;
 	}
 	
-	private String getEmail() {
+	public String getEmail() {
 		return this.email;
 	}
 	
@@ -63,11 +63,11 @@ public class Patient {
 		this.city = city;
 	}
 
-	private String City() {
+	public String City() {
 		return this.city;
 	}
 	
-	private int getPatientId() {
+	public int getPatientId() {
 		return this.patientId;
 	}
 }
