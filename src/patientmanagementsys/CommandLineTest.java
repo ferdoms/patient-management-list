@@ -9,15 +9,17 @@ package patientmanagementsys;
  *
  * @author fernandoms
  */
-public class PatientManagementSys {
+public class CommandLineTest {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // TODO code application logic here
         CommandLine cl= new CommandLine();
-        cl.start();
+        
         while(!cl.exit()){
+            cl.start();
             cl.awaitCommand();
         }
     }

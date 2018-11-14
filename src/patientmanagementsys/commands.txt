@@ -1,0 +1,9 @@
+add new
+add at
+list
+search name
+search id
+remove patient
+remove id
+update patient
+update id
