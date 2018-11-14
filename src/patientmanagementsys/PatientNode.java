@@ -43,7 +43,6 @@ class PatientNode {
 	public void setPatientNext(PatientNode nex) {
 		this.next = nex;
 	}
-	
 	/**
 	*
 	* @method getPatientData will return data from patient node
