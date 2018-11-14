@@ -116,7 +116,7 @@ public class Patient {
 	 *
 	 * @method getPatientId to return Patient Id stored in database
 	 */
-	public String getPatientId() {
+	public int getPatientId() {
 		return this.patientID;
 	}
 }
