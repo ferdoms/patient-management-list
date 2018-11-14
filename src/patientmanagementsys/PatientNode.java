@@ -7,7 +7,6 @@ package patientmanagementsys;
 class PatientNode {
 	protected int patientData;
 	protected PatientNode previous, next;
-
 /**
 *
 * @constructor PatientNode for setting the logic when getting 
@@ -66,7 +65,5 @@ class PatientNode {
 	*/
 	public PatientNode getNext() {
 		return next;
-		
 	}
-	
 } 
