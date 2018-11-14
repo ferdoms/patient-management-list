@@ -11,20 +11,22 @@ public class Patient {
 	private String mobileNumber;
 	private String email;
 	private String city;
-	private Integer patientId;
+	private static Integer id = 100;
+	private final int patientID;
 	
 	/**
 	 *
 	 * @constructor Patient 
 	 */
-	public Patient(String fName, String lName, String ppsNumber,String mobileNumber, String email, String city, int patientId) {
+	public Patient(String fName, String lName, String ppsNumber,String mobileNumber, String email, String city) {
 		this.fName = fName;
 		this.lName = lName;
 		this.ppsNumber = ppsNumber;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 		this.city = city;
-		this.patientId = patientId;
+		id = id+1;
+		patientID = id;
 	}
 	/**
 	 *
@@ -114,7 +116,7 @@ public class Patient {
 	 *
 	 * @method getPatientId to return Patient Id stored in database
 	 */
-	public int getPatientId() {
-		return this.patientId;
+	public String getPatientId() {
+		return this.patientID;
 	}
 }
