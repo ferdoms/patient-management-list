@@ -11,22 +11,23 @@ public class Patient {
 	private String mobileNumber;
 	private String email;
 	private String city;
-	private Integer patientId;
+	private static Integer id = 100;
+	private final int patientID;
 	
 	/**
 	 *
 	 * @constructor Patient 
 	 */
-	public Patient(String fName, String lName, String ppsNumber,String mobileNumber, String email, String city, int patientId) {
+	public Patient(String fName, String lName, String ppsNumber,String mobileNumber, String email, String city) {
 		this.fName = fName;
 		this.lName = lName;
 		this.ppsNumber = ppsNumber;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 		this.city = city;
-		this.patientId = patientId;
+		id = id+1;
+		patientID = id;
 	}
-	
 	/**
 	 *
 	 * @method setFname for passing information from user to system
@@ -34,7 +35,6 @@ public class Patient {
 	public void setFname(String fName) {
 		this.fName = fName;
 	}
-	
 	/**
 	 *
 	 * @method getFname to return patient`s first name stored in database
@@ -42,7 +42,6 @@ public class Patient {
 	public String getFname() {
 		return this.fName;
 	}
-	
 	/**
 	 *
 	 * @method setlName for passing information from user to system
@@ -50,7 +49,6 @@ public class Patient {
 	public void setLname(String lName) {
 		this.lName = lName;
 	}
-	
 	/**
 	 *
 	 * @method getLname to return patient`s last name stored in database
@@ -58,7 +56,6 @@ public class Patient {
 	public String getLname() {
 		return this.lName;
 	}
-	
 	/**
 	 *
 	 * @method setPpsNumber for passing information from user to system
@@ -66,7 +63,6 @@ public class Patient {
 	public void setPpsNumber(String ppsNumber) {
 		this.ppsNumber = ppsNumber;
 	}
-	
 	/**
 	 *
 	 * @method getPpsNumber to return patient`s pps number stored in database
@@ -74,7 +70,6 @@ public class Patient {
 	public String getPpsNumber() {
 		return this.ppsNumber;
 	}
-	
 	/**
 	 *
 	 * @method setMobileNumber for passing information from user to system
@@ -82,7 +77,6 @@ public class Patient {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-	
 	/**
 	 *
 	 * @method getMobileNumber to return patient`s mobile number stored in database
@@ -90,7 +84,6 @@ public class Patient {
 	public String getMobileNumber() {
 		return this.mobileNumber;
 	}
-	
 	/**
 	 *
 	 * @method setEmail for passing information from user to system
@@ -98,7 +91,6 @@ public class Patient {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 	/**
 	 *
 	 * @method getEmail to return patient`s email stored in database
@@ -106,7 +98,6 @@ public class Patient {
 	public String getEmail() {
 		return this.email;
 	}
-	
 	/**
 	 *
 	 * @method setCity for passing information from user to system
@@ -114,7 +105,6 @@ public class Patient {
 	public void setCity(String city) {
 		this.city = city;
 	}
-
 	/**
 	 *
 	 * @method getCity to return patient`s city name stored in database
@@ -122,12 +112,11 @@ public class Patient {
 	public String getCity() {
 		return this.city;
 	}
-	
 	/**
 	 *
 	 * @method getPatientId to return Patient Id stored in database
 	 */
-	public int getPatientId() {
-		return this.patientId;
+	public String getPatientId() {
+		return this.patientID;
 	}
 }
