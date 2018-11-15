@@ -1,5 +1,8 @@
 package patientmanagementsys;
-
+/**
+*
+* @author Joao Pedro Haddad 2016220
+*/
 public interface PatientNodeInterface {
 	public void addFirst(Patient item);	
 	public void addAfter(PatientNode<Patient> node, Patient item); 
