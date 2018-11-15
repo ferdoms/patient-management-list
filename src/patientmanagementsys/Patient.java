@@ -56,6 +56,10 @@ public class Patient {
 	public String getLname() {
 		return this.lName;
 	}
+	
+	public String getFullName() {
+		return getFname() + " " + getLname();
+	}
 	/**
 	 *
 	 * @method setPpsNumber for passing information from user to system
