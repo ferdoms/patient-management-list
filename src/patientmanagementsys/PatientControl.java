@@ -39,7 +39,7 @@ public class PatientControl implements PatientNodeInterface {
 	        }
 	        if (temp != null) {
 	            size--;
-	            return temp.PatientData;
+	            return temp.patientData;
 	        } else {
 	            return null;
 	        }
@@ -56,7 +56,7 @@ public class PatientControl implements PatientNodeInterface {
 	        if (temp != null) {
 	            node.next = temp.next;
 	            size--;
-	            return temp.PatientData;
+	            return temp.patientData;
 	        } else {
 	            return null;
 	        }
@@ -87,7 +87,7 @@ public class PatientControl implements PatientNodeInterface {
 	            throw new IndexOutOfBoundsException(Integer.toString(index));
 	        }
 	        PatientNode<Patient> node = getNode(index);
-	        return node.PatientData;
+	        return node.patientData;
 	    }
 	    /**
 	     * Set the data value at index
@@ -102,8 +102,8 @@ public class PatientControl implements PatientNodeInterface {
 	            throw new IndexOutOfBoundsException(Integer.toString(index));
 	        }
 	        PatientNode<Patient> node = getNode(index);
-	        Patient result = node.PatientData;
-	        node.PatientData = newValue;
+	        Patient result = node.patientData;
+	        node.patientData = newValue;
 	        return result;
 	    }
 	    /**
@@ -122,7 +122,7 @@ public class PatientControl implements PatientNodeInterface {
 	        if (index == 0) {
 	            addFirst(item);
 	        } else {
-	        	PatientNode<Patient> node = getNode(index - 1);
+                    PatientNode<Patient> node = getNode(index - 1);
 	            addAfter(node, item);
 	        }
 	    }
@@ -148,6 +148,7 @@ public class PatientControl implements PatientNodeInterface {
 	    @Override
 	    public Patient remove(int index) {
 	        if (index < 0 || index >= size) {
+                    
 	            throw new IndexOutOfBoundsException(Integer.toString(index));
 	        }
 	        PatientNode<Patient> removedNode = null;
@@ -173,14 +174,15 @@ public class PatientControl implements PatientNodeInterface {
 	    @Override
 	    public String toString() {
 	        StringBuilder sb = new StringBuilder("[");
-	        PatientNode p = head;
+	        PatientNode<Patient> p = head;
 	        if (p != null) {
 	            while (p.next != null) {
-	                sb.append(p.PatientData.toString());
-	                sb.append(" ==> ");
+	                sb.append(p.patientData.getFullName());
+                        sb.append("\n");
+//	                sb.append(" ==> ");
 	                p = p.next;
 	            }
-	            sb.append(p.PatientData.toString());
+	            sb.append(p.patientData.getFullName());
 	        }
 	        sb.append("]");
 	        return sb.toString();
@@ -195,12 +197,12 @@ public class PatientControl implements PatientNodeInterface {
 	            return false;
 	        }
 	        PatientNode<Patient> current = head;
-	        if (item.equals(current.PatientData)) {
+	        if (item.equals(current.patientData)) {
 	            removeFirst();
 	            return true;
 	        }
 	        while (current.next != null) {
-	            if (item.equals(current.next.PatientData)) {
+	            if (item.equals(current.next.patientData)) {
 	                removeAfter(current);
 	                return true;
 	            }

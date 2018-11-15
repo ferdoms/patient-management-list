@@ -7,7 +7,7 @@ package patientmanagementsys;
 public class PatientNode<Patient> {
 
     /** The data value. */
-    public Patient PatientData;
+    public Patient patientData;
     /** The link */
     public PatientNode<Patient> next = null;
 
@@ -17,7 +17,7 @@ public class PatientNode<Patient> {
      * @param next - The link
      */
     public PatientNode(Patient PatientData, PatientNode<Patient> next) {
-        this.PatientData = PatientData;
+        this.patientData = PatientData;
         this.next = next;
     }
 
@@ -25,8 +25,8 @@ public class PatientNode<Patient> {
      * Construct a node with the given data value
      * @param data - The data value 
      */
-    public PatientNode(Patient PatientData) {
-        this(PatientData, null);
+    public PatientNode(Patient patientData) {
+        this(patientData, null);
     }
 }
 	

@@ -15,84 +15,107 @@ public class CommandLine {
     
     Scanner kb = new Scanner(System.in);
     boolean exit = false;
+    PatientControl pControl = null;
     
     public void start(){
         System.out.println("Splash \n Screen");
+        pControl = new PatientControl();
     }
     public void awaitCommand(){
         String command;
         System.out.print("PMS > ");
-        command = kb.nextLine().toLowerCase();
-        String[] words = command.split(" ");
+        command = kb.nextLine();
+        String[] words = command.toLowerCase().split(" ");
         
         try{
             switch(words[0]){
                 case "add":
-//                    if(words[1].equals("new")){
-//                        System.out.println("Patient Details");
-//                        //First Name
-//                        System.out.print("First Name: ");
-//                        String fName = kb.next();
-//                        //Last Name
-//                        System.out.print("Last Name: ");
-//                        String lName = kb.next();
-//                        //PPS
-//                        System.out.print("PPS: ");
-//                        String ppsNumber = kb.next();
-//                        //mobileNumber
-//                        System.out.print("Mobile Number: ");
-//                        String mobileNumber = kb.next();
-//                        //Email
-//                        System.out.print("Email: ");
-//                        String email = kb.next();
-//                        //City
-//                        System.out.print("City: ");
-//                        String city = kb.next();
-//                        
-//                        //Patient newPatient = new Patient(fName, lName, ppsNumber, mobileNumber, email,  city );
-//		
-//                        
-//                        
-//                        
-//                        System.out.println("patient added");
-//                        break;
-//                    }else if((words[1].equals("at"))){
-//                        String position = "0";
-//                        System.out.println("patient placed at position " + position);
-//                        break;
-//                    }else{
-//                        errCommand(words[1]);
-//                        break;
-//                    }
+                    if(words.length != 2){
+                        errCommand(command);
+                        break;
+                    }
+                    if(words[1].equals("new")){
+                        System.out.println("Patient Details");
+                        //First Name
+                        System.out.print("First Name: ");
+                        String fName = kb.nextLine();
+                        //Last Name
+                        System.out.print("Last Name: ");
+                        String lName = kb.nextLine();
+                        //PPS
+                        System.out.print("PPS: ");
+                        String ppsNumber = kb.nextLine();
+                        //mobileNumber
+                        System.out.print("Mobile Number: ");
+                        String mobileNumber = kb.nextLine();
+                        //Email
+                        System.out.print("Email: ");
+                        String email = kb.nextLine();
+                        //City
+                        System.out.print("City: ");
+                        String city = kb.nextLine();
+                        
+                        Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
+                        pControl.add(patient);
+                        System.out.println("Patient added: "+ patient.getFullName());
+                    }else if((words[1].equals("at"))){
+                        int position=0;
+                        System.out.print("Position: ");
+                        try {
+                            position = Integer.parseInt(kb.nextLine());
+                        }catch(Exception e){ System.err.println("It has to be a valid number.");}
+                        
+                        System.out.println("patient placed at position " + position);
+                        
+                    }else{
+                        errCommand(command);
+                    }
                     break;
+                    
                 case "list":
-                    System.out.println("list");
+                    if(words.length != 1){
+                        errCommand(command);
+                        break;
+                    }
+                    System.out.println(pControl.toString());
                     break;
                 case "search":
+                    if(words.length != 2){
+                        errCommand(command);
+                        break;
+                    }
                     if(words[1].equals("name")){
                         System.out.println("located by name");
                     }else if((words[1].equals("id"))){
                         System.out.println("located by id");
                     }else{
-                        errCommand(words[1]);
+                        errCommand(command);
                     }
                     break;
                 case "remove":
-                    if(words[1].equals("name")){
+                    if(words.length != 2){
+                        errCommand(command);
+                        break;
+                    }
+                    if(words[1].equals("patient")){
                         System.out.println("removed by name");
                     }else if((words[1].equals("id"))){
                         System.out.println("removed by id");
                     }else{
-                        errCommand(words[1]);
+                        errCommand(command);
                     }
                     break;
                 case "update":
+                    if(words.length != 2){
+                        errCommand(command);
+                        break;
+                    }
                     if(words[1].equals("name")){
                         System.out.println("removed by name");
                     }else if((words[1].equals("id"))){
                         System.out.println("removed by id");
                     }else{
-                        errCommand(words[1]);
+                        errCommand(command);
                     }
                     break;
                 case "quit":
@@ -110,7 +133,7 @@ public class CommandLine {
         return this.exit;
     }
     private void errCommand(String command){
-        System.err.println("ERROR: \""+ command +"\" isn't a command, please try again or type help to list commands available");
+        System.err.println("ERROR: \""+ command +"\" is not a valid command, please try again or type help to list available commands");
     }
    
 }
