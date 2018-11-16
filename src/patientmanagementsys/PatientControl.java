@@ -177,12 +177,12 @@ public class PatientControl implements PatientNodeInterface {
 	        PatientNode<Patient> p = head;
 	        if (p != null) {
 	            while (p.next != null) {
-	                sb.append(p.patientData.getFullName());
+	                sb.append(p.patientData.getPatientId()+" "+p.patientData.getFullName());
                         sb.append("\n");
 //	                sb.append(" ==> ");
 	                p = p.next;
 	            }
-	            sb.append(p.patientData.getFullName());
+	            sb.append(p.patientData.getPatientId()+" "+p.patientData.getFullName());
 	        }
 	        sb.append("]");
 	        return sb.toString();
