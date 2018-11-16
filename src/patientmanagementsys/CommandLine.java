@@ -70,6 +70,7 @@ public class CommandLine {
                         break;
                     }
                     this.list();
+
                     break;
                 case "search":
                     if(words.length != 2){
