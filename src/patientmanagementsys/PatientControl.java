@@ -188,6 +188,25 @@ public class PatientControl implements PatientNodeInterface {
 	        return sb.toString();
 	    }
 	    /**
+	     * Obtain a string representation of the list
+	     * @return A String representation of the list 
+	     */
+	    public String toList() {
+	        StringBuilder sb = new StringBuilder(" ");
+	        PatientNode<Patient> p = head;
+	        if (p != null) {
+	            while (p.next != null) {
+	                sb.append(p.patientData.resumePatient());
+                        sb.append("\n");
+//	                sb.append(" ==> ");
+	                p = p.next;
+	            }
+	            sb.append(p.patientData.resumePatient());
+	        }
+	        sb.append(" ");
+	        return sb.toString();
+	    }
+	    /**
 	     * Remove the first occurrence of element item.
 	     * @param item The item to be removed
 	     * @return true if item is found and removed; otherwise, return false.

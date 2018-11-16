@@ -77,7 +77,7 @@ public class CommandLine {
                         errCommand(command);
                         break;
                     }
-                    System.out.println(pControl.toString());
+                    System.out.println(pControl.toList());
                     break;
                 case "search":
                     if(words.length != 2){

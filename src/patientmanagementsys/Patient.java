@@ -123,4 +123,17 @@ public class Patient {
 	public int getPatientId() {
 		return this.patientID;
 	}
+	public String toString() {
+        return " Patient waiting list details:"
+        	   +"\n _______________________________"
+        		+ "\n \n Patient ID: " + getPatientId() 
+                + "\n Full Name: " + getFullName() 
+                + "\n City: " + getCity()
+                + "\n PPS Number: " + getPpsNumber()
+                + "\n Email: " + getEmail()
+                + "\n Phone Number: " + getMobileNumber();         
+    }
+	public String resumePatient() {
+        return getPatientId() + " - " + getFullName();         
+    }
 }
