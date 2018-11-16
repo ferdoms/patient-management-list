@@ -18,18 +18,30 @@ public class CommandLine {
     PatientControl pControl = null;
     
     public void start(){
-        System.out.println("Splash \n Screen");
+        System.out.println( "░░░░░░░░░░░░░░░░░░╔═══╦═╗╔═╦═══╗░░░░░░░░░░░░░░░░░░░░\n" +
+                            "░░░░░░░░░░░░░░░░░░║╔═╗║║╚╝║║╔═╗║░░░░░░░░░░░░░░░░░░░░\n" +
+                            "░░░░░░░░░░░░░░░░░░║╚═╝║╔╗╔╗║╚══╗░░░░░░░░░░░░░░░░░░░░\n" +
+                            "░░░░░░░░░░░░░░░░░░║╔══╣║║║║╠══╗║░░░░░░░░░░░░░░░░░░░░\n" +
+                            "░░░░░░░░░░░░░░░░░░║║░░║║║║║║╚═╝║░░░░░░░░░░░░░░░░░░░░\n" +
+                            "░░░░░░░░░░░░░░░░░░╚╝░░╚╝╚╝╚╩═══╝░░░░░░░░░░░░░░░░░░░░\n" + 
+                            "                                               v 1.0\n" +
+                            "type \"help\" for command list");
+        
         pControl = new PatientControl();
         Patient p1 = new Patient("Fernando", "Marinho", "123", "123", "123", "123");
         Patient p2 = new Patient("Joao", "Haddad", "123", "123", "123", "123");
         Patient p3 = new Patient("Gustavo", "Lessa", "123", "123", "123", "123");
         Patient p4 = new Patient("Fabio", "Valegio", "123", "123", "123", "123");
         Patient p5 = new Patient("Sancho", "Panca", "123", "123", "123", "123");
+        Patient p6 = new Patient("Fernando", "Silva", "123", "123", "123", "123");
+        Patient p7 = new Patient("Mayara", "Marinho", "123", "123", "123", "123");
         pControl.add(p1);
         pControl.add(p2);
         pControl.add(p3);
         pControl.add(p4);
         pControl.add(p5);
+        pControl.add(p6);
+        pControl.add(p7);
     }
     public void awaitCommand(){
         String command;
@@ -201,12 +213,12 @@ public class CommandLine {
         String city = kb.nextLine();
 
         Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
-        pControl.add(position, patient);
+        pControl.add(index , patient);
         System.out.println("Patient added at position "+ position);
         System.out.println(patient.toString());
     }
     private void list(){
-        System.out.println(pControl.toString());
+        System.out.println(pControl.toList());
     }
     private void searchName(String name){
         String[] words = name.toLowerCase().split(" ");
@@ -214,9 +226,11 @@ public class CommandLine {
         
         for(int i=0; i<pControl.size();i++){
             Patient tempPatient = pControl.get(i);
+            innerloop:
             for(String word:words){
                 if(tempPatient.getFname().toLowerCase().equals(word) || tempPatient.getLname().toLowerCase().equals(word)){
                     tempList.add(tempPatient);
+                    break innerloop;
                 }
             }
         }
