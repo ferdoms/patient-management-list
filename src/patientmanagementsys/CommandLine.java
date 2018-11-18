@@ -50,109 +50,118 @@ public class CommandLine {
         String[] words = command.toLowerCase().split(" ");
         
         try{
-            switch(words[0]){
-                case "add":
-                    if(words.length != 2){
-                        errCommand(command);
-                        break;
-                    }
-                    if(words[1].equals("new")){
-                        this.addPatient();
-                    }else if((words[1].equals("at"))){
-                        int position=0;
-                        
-                        while(position<=0 || (position>pControl.size())){
-                            
-                            try {
-                                System.out.print("Position: ");
-                                position = Integer.parseInt(kb.nextLine());
-                            }catch(Exception e){ System.err.println("ERROR: It has to be a valid number.");}
-                            if(position<=0 || (position>pControl.size())){
-                            System.err.println("ERROR: The position number has to be between 1 and " + pControl.size());}
+            if(!command.equals("")){
+                switch(words[0]){
+                    case "add":
+                        if(words.length != 2){
+                            errCommand(command);
+                            break;
                         }
-                        this.addPatientAt(position);
-                    }else{
-                        errCommand(command);
-                    }
-                    break;
-                    
-                case "list":
-                    if(words.length != 1){
-                        errCommand(command);
-                        break;
-                    }
-                    this.list();
+                        if(words[1].equals("new")){
+                            this.addPatient();
+                        }else if((words[1].equals("at"))){
+                            int position=0;
 
-                    break;
-                case "search":
-                    if(words.length != 2){
-                        errCommand(command);
+                            while(position<=0 || (position>pControl.size())){
+
+                                try {
+                                    System.out.print("Position: ");
+                                    position = Integer.parseInt(kb.nextLine());
+                                }catch(Exception e){ System.err.println("ERROR: It has to be a valid number.");}
+                                if(position<=0 || (position>pControl.size())){
+                                System.err.println("ERROR: The position number has to be between 1 and " + pControl.size());}
+                            }
+                            this.addPatientAt(position);
+                        }else{
+                            errCommand(command);
+                        }
                         break;
-                    }
-                    if(words[1].equals("name")){
-                        System.out.print("Name: ");
-                        String name = kb.nextLine();
-                        this.searchName(name);
-                    }else if((words[1].equals("id"))){
-                        int id = 0;
-                        try {
+
+                    case "list":
+                        if(words.length != 1){
+                            errCommand(command);
+                            break;
+                        }
+                        this.list();
+
+                        break;
+                    case "search":
+                        if(words.length != 2){
+                            errCommand(command);
+                            break;
+                        }
+                        if(words[1].equals("name")){
+                            System.out.print("Name: ");
+                            String name = kb.nextLine();
+                            this.searchName(name);
+                        }else if((words[1].equals("id"))){
+                            int id = 0;
+                            try {
+                                    System.out.print("Id: ");
+                                    id = Integer.parseInt(kb.nextLine());
+                                    this.searchPID(id);
+                                }catch(Exception e){ System.err.println("ERROR: It has to be a valid number.");}
+                        }else{
+                            errCommand(command);
+                        }
+                        break;
+                    case "remove":
+                        if(words.length != 2){
+                            errCommand(command);
+                            break;
+                        }
+                        if(words[1].equals("patient")){
+                            System.out.print("Name: ");
+                            String name = kb.nextLine();
+                            this.removePatient(name);
+                        }else if((words[1].equals("id"))){
+                            int id = 0;
+                            try {
                                 System.out.print("Id: ");
                                 id = Integer.parseInt(kb.nextLine());
-                                this.searchPID(id);
-                            }catch(Exception e){ System.err.println("ERROR: It has to be a valid number.");}
-                    }else{
-                        errCommand(command);
-                    }
-                    break;
-                case "remove":
-                    if(words.length != 2){
-                        errCommand(command);
+                                this.removePatient(id);
+                            }catch(Exception e){ 
+                                System.err.println("ERROR: "+ e);
+                                System.err.println("ERROR: It has to be a valid number.");}
+                        }else if((words[1].equals("last"))){
+//                            try {
+//                                this.removeLast(Integer.parseInt(words[2]));
+//                            }catch(Exception e){ 
+//                                System.err.println("ERROR: "+ e);
+//                                System.err.println("ERROR: It has to be a valid number.");}
+                        
+                        }else{
+                            errCommand(command);
+                        }
                         break;
-                    }
-                    if(words[1].equals("patient")){
-                        System.out.print("Name: ");
-                        String name = kb.nextLine();
-                        this.removePatient(name);
-                    }else if((words[1].equals("id"))){
-                        int id = 0;
-                        try {
-                            System.out.print("Id: ");
-                            id = Integer.parseInt(kb.nextLine());
-                            this.removePatient(id);
-                        }catch(Exception e){ 
-                            System.err.println("ERROR: "+ e);
-                            System.err.println("ERROR: It has to be a valid number.");}
-                    }else{
-                        errCommand(command);
-                    }
-                    break;
-                case "update":
-                    if(words.length != 2){
-                        errCommand(command);
+                    case "update":
+                        if(words.length != 2){
+                            errCommand(command);
+                            break;
+                        }
+                        if(words[1].equals("patient")){
+                            System.out.print("Name: ");
+                            String name = kb.nextLine();
+                            this.updatePatient(name);
+                        }else if((words[1].equals("id"))){
+                            int id = 0;
+                            try {
+                                System.out.print("Id: ");
+                                id = Integer.parseInt(kb.nextLine());
+                                this.updatePatient(id);
+                            }catch(Exception e){ 
+                                System.err.println("ERROR: "+ e);
+                                System.err.println("ERROR: It has to be a valid number.");}
+                        }else{
+                            errCommand(command);
+                        }
                         break;
-                    }
-                    if(words[1].equals("patient")){
-                        System.out.print("Name: ");
-                        String name = kb.nextLine();
-                        this.updatePatient(name);
-                    }else if((words[1].equals("id"))){
-                        int id = 0;
-                        try {
-                            System.out.print("Id: ");
-                            id = Integer.parseInt(kb.nextLine());
-                            this.updatePatient(id);
-                        }catch(Exception e){ 
-                            System.err.println("ERROR: "+ e);
-                            System.err.println("ERROR: It has to be a valid number.");}
-                    }else{
-                        errCommand(command);
-                    }
-                    break;
-                case "quit":
-                    this.exit =! this.exit;
-                    break;
-                default: 
-                    errCommand(words[0]);
+                    case "quit":
+                        this.exit =! this.exit;
+                        break;
+                    default: 
+                        errCommand(words[0]);
+                }        
             }
         }catch(Exception e){
              System.err.println("ERROR: " + e);
@@ -188,7 +197,7 @@ public class CommandLine {
 
         Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
         pControl.add(patient);
-        System.out.println("Patient added: "+ patient.getFullName());
+        System.out.println("Patient added:\n"+ patient.toString());
     }
     private void addPatientAt(int position){
         int index = position-1;
@@ -229,20 +238,22 @@ public class CommandLine {
             innerloop:
             for(String word:words){
                 if(tempPatient.getFname().toLowerCase().equals(word) || tempPatient.getLname().toLowerCase().equals(word)){
+                    
+                    System.out.println("Position: " + (1+i) +" Patient: " + tempPatient.resumePatient());
                     tempList.add(tempPatient);
                     break innerloop;
                 }
             }
         }
         if(tempList.size()==0){
-        }else{
-            System.out.println(tempList.toString());
+            System.err.println("ERROR: Patient not found with name \"" + name +"\"");
         }
         
     }
     private void searchPID(int id){
         Patient tempPatient = null;
-        for(int i=0; i<pControl.size();i++){
+        int i;
+        for(i=0; i<pControl.size();i++){
             if(pControl.get(i).getPatientId() == id){
                 tempPatient = pControl.get(i);
                 break;
@@ -251,6 +262,7 @@ public class CommandLine {
         if(tempPatient==null){
             System.err.println("ERROR: Patient not found with id: " + id);
         }else{
+            System.out.println("Position: " + i);
             System.out.println(tempPatient.toString());
         }
         
@@ -374,6 +386,13 @@ public class CommandLine {
             System.out.println("Patient Update: " + pControl.get(i).getFullName());
         }
         
+    }
+    private void removeLast(int number){
+        System.out.println("number removed");
+    }
+    
+    private void helpCommand(){
+        System.out.println("patientmanagementsys.CommandLine.helpCommand()");
     }
    
 }
