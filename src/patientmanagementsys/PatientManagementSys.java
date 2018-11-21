@@ -5,6 +5,8 @@
  */
 package patientmanagementsys;
 
+import helpers.Input;
+
 /**
  *
  * @author fernandoms
