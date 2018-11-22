@@ -173,18 +173,18 @@ public class PatientControl implements PatientNodeInterface {
 	     */
 	    @Override
 	    public String toString() {
-	        StringBuilder sb = new StringBuilder("[");
+	        StringBuilder sb = new StringBuilder("");
 	        PatientNode<Patient> p = head;
 	        if (p != null) {
 	            while (p.next != null) {
-	                sb.append(p.patientData.getPatientId()+" "+p.patientData.getFullName());
+	                sb.append(p.patientData.patToString());
                         sb.append("\n");
 //	                sb.append(" ==> ");
 	                p = p.next;
 	            }
-	            sb.append(p.patientData.getPatientId()+" "+p.patientData.getFullName());
+	            sb.append(p.patientData.patToString());
 	        }
-	        sb.append("]");
+	        sb.append("");
 	        return sb.toString();
 	    }
 	    /**
@@ -192,8 +192,10 @@ public class PatientControl implements PatientNodeInterface {
 	     * @return A String representation of the list 
 	     */
 	    public String toList() {
-	        StringBuilder sb = new StringBuilder(" ");
+	        StringBuilder sb = new StringBuilder("");
 	        PatientNode<Patient> p = head;
+	        System.out.println("\nLIST OF REGISTERED PATIENTS:");
+	        System.out.println("----------------------------");
 	        if (p != null) {
 	            while (p.next != null) {
 	                sb.append(p.patientData.resumePatient());
@@ -203,7 +205,7 @@ public class PatientControl implements PatientNodeInterface {
 	            }
 	            sb.append(p.patientData.resumePatient());
 	        }
-	        sb.append(" ");
+	        sb.append("\n");
 	        return sb.toString();
 	    }
 	    /**

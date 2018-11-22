@@ -11,7 +11,7 @@ public class Patient {
 	private String mobileNumber;
 	private String email;
 	private String city;
-	private static Integer id = 100;
+	private static Integer id = 99;
 	private final int patientID;
 	
 	/**
@@ -123,17 +123,25 @@ public class Patient {
 	public int getPatientId() {
 		return this.patientID;
 	}
-	public String toString() {
-        return " Patient waiting list details:"
-        	   +"\n _______________________________"
-        		+ "\n \n Patient ID: " + getPatientId() 
-                + "\n Full Name: " + getFullName() 
+	/**
+	 *
+	 * @method patToString returns full patient details to the user
+	 */
+	public String patToString() {
+        return "\n PATIENT DETAILS: \n"
+        	   +" " +"----------------"
+                + "\n Full Name: " + getFullName()
+        		+ "\n Patient ID: " + getPatientId()  
                 + "\n City: " + getCity()
                 + "\n PPS Number: " + getPpsNumber()
                 + "\n Email: " + getEmail()
-                + "\n Phone Number: " + getMobileNumber();         
+                + "\n Phone Number: " + getMobileNumber() + "\n";         
     }
+	/**
+	 *
+	 * @method resumePatient returns only patient ID + name
+	 */
 	public String resumePatient() {
-        return getPatientId() + " - " + getFullName();         
+        return getPatientId() + " - " + getFullName();  
     }
 }

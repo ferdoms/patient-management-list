@@ -18,13 +18,16 @@ public class CommandLine {
     PatientControl pControl = null;
     
     public void start(){
-        System.out.println("Splash \n Screen");
+        System.out.println("   ___       __  _          __    _____          __           __\r\n" + 
+        		"  / _ \\___ _/ /_(_)__ ___  / /_  / ___/__  ___  / /________  / /\r\n" + 
+        		" / ___/ _ `/ __/ / -_) _ \\/ __/ / /__/ _ \\/ _ \\/ __/ __/ _ \\/ / \r\n" + 
+        		"/_/   \\_,_/\\__/_/\\__/_//_/\\__/  \\___/\\___/_//_/\\__/_/  \\___/_/version 1.0" + "\n");
         pControl = new PatientControl();
-        Patient p1 = new Patient("Fernando", "Marinho", "123", "123", "123", "123");
-        Patient p2 = new Patient("Joao", "Haddad", "123", "123", "123", "123");
-        Patient p3 = new Patient("Gustavo", "Lessa", "123", "123", "123", "123");
-        Patient p4 = new Patient("Fabio", "Valegio", "123", "123", "123", "123");
-        Patient p5 = new Patient("Sancho", "Panca", "123", "123", "123", "123");
+        Patient p1 = new Patient("Fernando", "Marinho", "5544568-B", "0899546449", "MarinhoFernando@gmail.com", "Dubin");
+        Patient p2 = new Patient("Joao", "Haddad", "6547365-H", "0899674536", "joao-pedrohaddad@hotmail.com", "Dublin");
+        Patient p3 = new Patient("Gustavo", "Lessa", "8775637-K", "0876543356", "Lessag@hotmail.com", "Cork");
+        Patient p4 = new Patient("Fabio", "Valegio", "9882310-H", "0856744500", "vlgio@gmail.com", "Bray");
+        Patient p5 = new Patient("Sancho", "Panca", "6655473-B", "0878964532", "sanchop@hotmail.com", "Galway");
         pControl.add(p1);
         pControl.add(p2);
         pControl.add(p3);
@@ -33,7 +36,7 @@ public class CommandLine {
     }
     public void awaitCommand(){
         String command;
-        System.out.print("PMS > ");
+        System.out.print("cmd > ");
         command = kb.nextLine();
         String[] words = command.toLowerCase().split(" ");
         
@@ -54,7 +57,8 @@ public class CommandLine {
                             try {
                                 System.out.print("Position: ");
                                 position = Integer.parseInt(kb.nextLine());
-                            }catch(Exception e){ System.err.println("ERROR: It has to be a valid number.");}
+                            }catch(Exception e){ 
+                            	System.err.println("ERROR: It has to be a valid number.");}
                             if(position<=0 || (position>pControl.size())){
                             System.err.println("ERROR: The position number has to be between 1 and " + pControl.size());}
                         }
@@ -71,6 +75,13 @@ public class CommandLine {
                     }
                     this.list();
 
+                    break;
+                case "help":
+                    if(words.length != 1){
+                        errCommand(command);
+                        break;
+                    }
+                    this.help();
                     break;
                 case "search":
                     if(words.length != 2){
@@ -151,7 +162,7 @@ public class CommandLine {
         return this.exit;
     }
     private void errCommand(String command){
-        System.err.println("ERROR: \""+ command +"\" is not a valid command, please try again or type help to list available commands");
+        System.err.println("ERROR: \""+ command +"\" is not a valid command, please try again or type help for command list");
     }
     private void addPatient(){
         System.out.println("Patient Details");
@@ -177,6 +188,19 @@ public class CommandLine {
         Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
         pControl.add(patient);
         System.out.println("Patient added: "+ patient.getFullName());
+    }
+    private void help() {
+    	System.out.println("\nLIST OF COMMANDS \n"
+    			+ "----------------\n"
+    			+ "add new\r\n" + 
+    			"add at\r\n" + 
+    			"list\r\n" + 
+    			"search name\r\n" + 
+    			"search id\r\n" + 
+    			"remove patient\r\n" + 
+    			"remove id\r\n" + 
+    			"update patient\r\n" + 
+    			"update id\n");
     }
     private void addPatientAt(int position){
         int index = position-1;
@@ -205,9 +229,17 @@ public class CommandLine {
         System.out.println("Patient added at position "+ position);
         System.out.println(patient.toString());
     }
+    /**
+	 *
+	 * @method list returns resumed patient details
+	 */
     private void list(){
-        System.out.println(pControl.toString());
+        System.out.println(pControl.toList());
     }
+    /**
+	 *
+	 * @method searchName allows user to retrieve full patient`s data
+	 */
     private void searchName(String name){
         String[] words = name.toLowerCase().split(" ");
         PatientControl tempList = new PatientControl();
@@ -226,6 +258,10 @@ public class CommandLine {
         }
         
     }
+    /**
+	 *
+	 * @method searchPID allows user to retrieve patient ID + name to the user 
+	 */
     private void searchPID(int id){
         Patient tempPatient = null;
         for(int i=0; i<pControl.size();i++){
@@ -235,9 +271,9 @@ public class CommandLine {
             }
         }
         if(tempPatient==null){
-            System.err.println("ERROR: Patient not found with id: " + id);
+            System.err.println("ERROR: Patient " + id + " " + "not found\n");
         }else{
-            System.out.println(tempPatient.toString());
+            System.out.println("\n" + tempPatient.resumePatient() + "\n");
         }
         
     }
