@@ -183,17 +183,17 @@ public class CommandLine {
     private void addPatient(){
         System.out.println("Patient Details");
         //First Name
-        String fName = input.string("First Name: ");
+        String fName = input.string("First Name");
         //Last Name
-        String lName = input.string("Last Name: ");
+        String lName = input.string("Last Name");
         //PPS
-        String ppsNumber =  input.pps("PPS: ");
+        String ppsNumber =  input.pps("PPS");
         //mobileNumber
-        String mobileNumber = input.mobile("Mobile Number: ");
+        String mobileNumber = input.mobile("Mobile Number");
         //Email
-        String email = input.email("Email: ");
+        String email = input.email("Email");
         //City
-        String city = input.string("City: ");
+        String city = input.string("City");
 
         Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
         pControl.add(patient);
@@ -223,17 +223,17 @@ public class CommandLine {
         int index = position-1;
         System.out.println("Patient Details");
         //First Name
-        String fName = input.string("First Name: ");
+        String fName = input.string("First Name");
         //Last Name
-        String lName = input.string("Last Name: ");
+        String lName = input.string("Last Name");
         //PPS
-        String ppsNumber =  input.pps("PPS: ");
+        String ppsNumber =  input.pps("PPS");
         //mobileNumber
-        String mobileNumber = input.mobile("Mobile Number: ");
+        String mobileNumber = input.mobile("Mobile Number");
         //Email
-        String email = input.email("Email: ");
+        String email = input.email("Email");
         //City
-        String city = input.string("City: ");
+        String city = input.string("City");
 
         Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
         pControl.add(index , patient);
