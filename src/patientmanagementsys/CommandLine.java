@@ -295,7 +295,7 @@ public class CommandLine {
         if(tempPatient==null){
             System.err.println("ERROR: Patient " + id + " " + "not found\n");
         }else{
-            System.out.println("\n" + tempPatient.toString() + "\n");
+            System.out.println("\n" + tempPatient.patToString() + "\n");
         }
         
     }
