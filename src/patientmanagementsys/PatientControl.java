@@ -196,14 +196,17 @@ public class PatientControl implements PatientNodeInterface {
 	        PatientNode<Patient> p = head;
 	        System.out.println("\nLIST OF REGISTERED PATIENTS:");
 	        System.out.println("----------------------------");
+                int i = 0;
 	        if (p != null) {
 	            while (p.next != null) {
-	                sb.append(p.patientData.resumePatient());
+                        i++;
+	                sb.append("# "+ i + " | " + p.patientData.resumePatient());
                         sb.append("\n");
 //	                sb.append(" ==> ");
 	                p = p.next;
 	            }
-	            sb.append(p.patientData.resumePatient());
+                    i++;
+	            sb.append("# "+ i + " | " + p.patientData.resumePatient());
 	        }
 	        sb.append("\n");
 	        return sb.toString();
