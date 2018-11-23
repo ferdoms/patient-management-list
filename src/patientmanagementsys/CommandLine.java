@@ -157,7 +157,7 @@ public class CommandLine {
                         errCommand(command);
                         break;
                     }
-                    this.helpCommand();
+                    this.help();
                     break;
                 case "quit":
                     this.exit =! this.exit;
@@ -207,15 +207,17 @@ public class CommandLine {
     private void help() {
     	System.out.println("\nLIST OF COMMANDS \n"
     			+ "----------------\n"
-    			+ "add new\r\n" + 
-    			"add at\r\n" + 
-    			"list\r\n" + 
-    			"search name\r\n" + 
-    			"search id\r\n" + 
-    			"remove patient\r\n" + 
-    			"remove id\r\n" + 
-    			"update patient\r\n" + 
-    			"update id\n");
+    			+ "add new                add new patient in the system.\n" + 
+    			  "add at                 add/move patient into given position.\n" + 
+    			  "list                   print position in queue and registered patients in the system.\n" + 
+    			  "search name <name>     search patient name in the system.\n" + 
+    			  "search id <number>     search patient in the system through patient id.\n" + 
+    			  "remove patient <name>  remove patient from the system.\n" + 
+    			  "remove id <number>     remove patient from the system through patient id.\n" + 
+    			  "remove last <amount>   remove x patients starting from the rear of the list.\n"+
+    			  "update patient <name>  update patient details in the system.\n" + 
+    			  "update id <number>     update patient details in the system through patient id.\n"
+    			  );
     }
 
     /**
@@ -425,7 +427,6 @@ public class CommandLine {
             pControl.set(i, tempPatient);
             System.out.println("Patient Update: " + pControl.get(i).getFullName());
         }
-        
     }
     /**
      * Remove the given amount of patients from the end of list.
