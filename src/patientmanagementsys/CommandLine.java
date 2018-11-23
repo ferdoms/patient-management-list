@@ -298,7 +298,8 @@ public class CommandLine {
         if(tempPatient==null){
             System.err.println("ERROR: Patient " + id + " " + "not found\n");
         }else{
-            System.out.println("\n" + tempPatient.patToString() + "\n");
+            int pos = 1+pControl.indexOf(tempPatient);
+            System.out.println("\n" + "Position: " + pos + "\n" + tempPatient.patToString() + "\n");
         }
         
     }
@@ -384,7 +385,7 @@ public class CommandLine {
             tempPatient.setCity(city);
             
             pControl.set(i, tempPatient);
-            System.out.println("Patient Update: " + pControl.get(i).getFullName());
+            System.out.println("Patient Updated at position: " + (1+i) + "\n" + pControl.get(i).resumePatient() + "\n" );
         }
         
     }
@@ -425,7 +426,7 @@ public class CommandLine {
             tempPatient.setCity(city);
             
             pControl.set(i, tempPatient);
-            System.out.println("Patient Update: " + pControl.get(i).getFullName());
+            System.out.println("Patient Updated at position: " + (1+i) + "\n" + pControl.get(i).resumePatient() + "\n" );
         }
     }
     /**
