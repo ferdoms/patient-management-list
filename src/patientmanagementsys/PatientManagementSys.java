@@ -21,6 +21,7 @@ public class PatientManagementSys {
         cl.start();
         while(!cl.exit()){
             cl.awaitCommand();
+//            System.out.println(new Input().text("text"));
         }
     }
     
