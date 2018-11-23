@@ -69,7 +69,6 @@ public class CommandLine {
                         while(position<=0 || (position>pControl.size())){
 
                             try {
-
                                 position = input.number("Position");
                             }catch(Exception e){ System.err.println("ERROR: It has to be a valid number.");}
 
@@ -96,7 +95,11 @@ public class CommandLine {
                         break;
                     }
                     if(words[1].equals("name")){
-                        this.searchName(words[2]);
+                        try {
+                            this.searchName(words[2]);
+                        }catch(Exception e){
+                            this.searchName(input.text("Name"));
+                        }
                     }else if((words[1].equals("id"))){
 
                         try {
@@ -183,9 +186,9 @@ public class CommandLine {
     private void addPatient(){
         System.out.println("Patient Details");
         //First Name
-        String fName = input.string("First Name");
+        String fName = input.text("First Name");
         //Last Name
-        String lName = input.string("Last Name");
+        String lName = input.text("Last Name");
         //PPS
         String ppsNumber =  input.pps("PPS");
         //mobileNumber
@@ -193,11 +196,11 @@ public class CommandLine {
         //Email
         String email = input.email("Email");
         //City
-        String city = input.string("City");
+        String city = input.text("City");
 
         Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
         pControl.add(patient);
-        System.out.println("Patient added:\n"+ patient.toString());
+        System.out.println("Patient added:\n"+ patient.patToString());
     }
 
     private void help() {
@@ -223,9 +226,9 @@ public class CommandLine {
         int index = position-1;
         System.out.println("Patient Details");
         //First Name
-        String fName = input.string("First Name");
+        String fName = input.text("First Name");
         //Last Name
-        String lName = input.string("Last Name");
+        String lName = input.text("Last Name");
         //PPS
         String ppsNumber =  input.pps("PPS");
         //mobileNumber
@@ -233,12 +236,12 @@ public class CommandLine {
         //Email
         String email = input.email("Email");
         //City
-        String city = input.string("City");
+        String city = input.text("City");
 
         Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
         pControl.add(index , patient);
         System.out.println("Patient added at position "+ position);
-        System.out.println(patient.toString());
+        System.out.println(patient.patToString());
     }
     /**
 
@@ -249,8 +252,8 @@ public class CommandLine {
     }
     /**
 
-     * Searches a patient in the list by name, pondering both first name and last name.
-     * Prints to the console the names found
+     * Searches a patient in the waiting list by name, pondering both first name and last name.
+     * Prints to the console a list of the names found.
      * @param String The Name to be searched
      */
 
@@ -276,12 +279,9 @@ public class CommandLine {
         
     }
     /**
-     * Remove the item at the specified position in the list. Shifts
-     * any squsequent items to the left (subtracts one from their
-     * indicies). Returns the tiem that was removed.
-     * @param index The index of the item to be removed
-     * @returns The item that was at the specified position
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * Searches a patient in the waiting list by id.
+     * Prints to the console a resume of the patient.
+     * @param id The id of the patient.
      */
     private void searchPID(int id){
         Patient tempPatient = null;
@@ -300,12 +300,8 @@ public class CommandLine {
         
     }
     /**
-     * Remove the item at the specified position in the list. Shifts
-     * any squsequent items to the left (subtracts one from their
-     * indicies). Returns the tiem that was removed.
-     * @param index The index of the item to be removed
-     * @returns The item that was at the specified position
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * Remove the patient with the given name. 
+     * @param fullName The full name of the patient to be removed.
      */
     private void removePatient(String fullName){
         
@@ -327,12 +323,8 @@ public class CommandLine {
         
     }
     /**
-     * Remove the item at the specified position in the list. Shifts
-     * any squsequent items to the left (subtracts one from their
-     * indicies). Returns the tiem that was removed.
-     * @param index The index of the item to be removed
-     * @returns The item that was at the specified position
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * Remove the patient with the given id. 
+     * @param id The id of the patient to be removed.
      */
     private void removePatient(int id){
         Patient tempPatient = null;
@@ -350,12 +342,9 @@ public class CommandLine {
         
     }
     /**
-     * Remove the item at the specified position in the list. Shifts
-     * any squsequent items to the left (subtracts one from their
-     * indicies). Returns the tiem that was removed.
-     * @param index The index of the item to be removed
-     * @returns The item that was at the specified position
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * Updates the patient information with the given name. The system will ask 
+     * the user to insert every info of the patient to be updated. 
+     * @param fullName The fullName of the patient to be updated.
      */
     private void updatePatient(String fullName){
         
@@ -373,22 +362,22 @@ public class CommandLine {
             System.err.println("ERROR: Patient not found named: " + fullName);
         }else{
             //First Name
-            String fName = input.string("First Name: ");
+            String fName = input.text("First Name");
             tempPatient.setFname(fName);
             //Last Name
-            String lName = input.string("Last Name: ");
+            String lName = input.text("Last Name");
             tempPatient.setLname(lName);
             //PPS
-            String ppsNumber =  input.pps("PPS: ");
+            String ppsNumber =  input.pps("PPS");
             tempPatient.setPpsNumber(ppsNumber);
             //mobileNumber
-            String mobileNumber = input.mobile("Mobile Number: ");
+            String mobileNumber = input.mobile("Mobile Number");
             tempPatient.setMobileNumber(mobileNumber);
             //Email
-            String email = input.email("Email: ");
+            String email = input.email("Email");
             tempPatient.setEmail(email);
             //City
-            String city = input.string("City: ");
+            String city = input.text("City");
             tempPatient.setCity(city);
             
             pControl.set(i, tempPatient);
@@ -397,12 +386,9 @@ public class CommandLine {
         
     }
     /**
-     * Remove the item at the specified position in the list. Shifts
-     * any squsequent items to the left (subtracts one from their
-     * indicies). Returns the tiem that was removed.
-     * @param index The index of the item to be removed
-     * @returns The item that was at the specified position
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * Updates the patient information with the given id. The system will ask 
+     * the user to insert every info of the patient to be updated. 
+     * @param id The id of the patient to be updated.
      */
     private void updatePatient(int id){
         Patient tempPatient = null;
@@ -417,22 +403,22 @@ public class CommandLine {
             System.err.println("ERROR: Patient not found with id: " + id);
         }else{
             //First Name
-            String fName = input.string("First Name: ");
+            String fName = input.text("First Name");
             tempPatient.setFname(fName);
             //Last Name
-            String lName = input.string("Last Name: ");
+            String lName = input.text("Last Name");
             tempPatient.setLname(lName);
             //PPS
-            String ppsNumber =  input.pps("PPS: ");
+            String ppsNumber =  input.pps("PPS");
             tempPatient.setPpsNumber(ppsNumber);
             //mobileNumber
-            String mobileNumber = input.mobile("Mobile Number: ");
+            String mobileNumber = input.mobile("Mobile Number");
             tempPatient.setMobileNumber(mobileNumber);
             //Email
-            String email = input.email("Email: ");
+            String email = input.email("Email");
             tempPatient.setEmail(email);
             //City
-            String city = input.string("City: ");
+            String city = input.text("City");
             tempPatient.setCity(city);
             
             pControl.set(i, tempPatient);
@@ -441,33 +427,27 @@ public class CommandLine {
         
     }
     /**
-     * Remove the item at the specified position in the list. Shifts
-     * any squsequent items to the left (subtracts one from their
-     * indicies). Returns the tiem that was removed.
-     * @param index The index of the item to be removed
-     * @returns The item that was at the specified position
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * Remove the given amount of patients from the end of list.
+     * @param amount The amount of the patients to be removed.
      */
-    private void removeLast(int number){
-        if(pControl.size() < number || number < 1){
+    private void removeLast(int amount){
+        if(pControl.size() < amount || amount < 1){
             System.err.println("ERROR: It has to be a number between 1 and " + pControl.size());
         }else{
-            int index = pControl.size()-number;
-            for(int i=number;i>0;i--){
+            int index = pControl.size()-amount;
+            System.out.println("\nPATIENT(S) REMOVED");
+            System.out.println("----------------------------");
+            for(int i=amount;i>0;i--){
                 System.out.println(pControl.remove(index).resumePatient());
             }
+            System.out.println();
         }
     }
     /**
-     * Remove the item at the specified position in the list. Shifts
-     * any squsequent items to the left (subtracts one from their
-     * indicies). Returns the tiem that was removed.
-     * @param index The index of the item to be removed
-     * @returns The item that was at the specified position
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * Prints the list of commands and explanations to console.
      */
     private void helpCommand(){
-        System.out.println("patientmanagementsys.CommandLine.helpCommand()");
+        System.out.println("search name <name> ");
     }
    
 }
