@@ -105,6 +105,21 @@ public class PatientControl implements PatientNodeInterface {
         PatientNode<Patient> node = getNode(index);
         return node.patientData;
     }
+    /**
+     * Get the index value of a data
+     *
+     * @param data The data to be searched.
+     * @returns The index of the data if found or returns null if not;
+     */
+    public Integer indexOf(Patient data) {
+        int i;
+        for(i=0;i<this.size;i++){
+            if(data==this.get(i)){
+                return i;
+            }
+        }
+        return null;
+    }
 
     /**
      * Set the data value at index

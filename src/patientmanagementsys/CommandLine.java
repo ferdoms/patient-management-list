@@ -200,7 +200,8 @@ public class CommandLine {
 
         Patient patient = new Patient(fName, lName, ppsNumber, mobileNumber, email, city);
         pControl.add(patient);
-        System.out.println("Patient added:\n"+ patient.patToString());
+        int pos = 1+pControl.indexOf(patient);
+        System.out.println("Patient added at position: "+ pos +"\n"+ patient.patToString());
     }
 
     private void help() {
